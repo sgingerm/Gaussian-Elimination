@@ -70,8 +70,12 @@ void Matrix::printAll(){
     cout<<"=============="<<endl;
 }
 void Matrix::printRow(int m){
-     printf(" ");
+    for(int j = 0; j < colSize; j++){
+        cout<< fixed << setprecision(4) <<getData(m,j)<<" ";
+    }
 }
 void Matrix::printCol(int n){
-     printf(" ");
+    for(int j = 0; j < colSize; j++){
+        cout<< fixed << setprecision(4) <<getData(j,n)<<" ";
+    }
 }

@@ -22,6 +22,12 @@
    double stringToDouble(const string &str);
 
    //文件读
-   void fileRead(double (&matrix)[3][3],int m,int n,string fileName);
+   void fileRead(Matrix &matrix,string fileName=".\\data.txt");
+
+   //文件写
+   void fileRead(Matrix &matrix,string fileName);
+
+   //键盘输入接口
+   void keyboard(Matrix &matrix);
 
 #endif

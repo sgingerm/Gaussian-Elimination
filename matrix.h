@@ -19,7 +19,6 @@ class Matrix
     void init(int m,int n);
     double getData(int i, int j);
     void setData(int i, int j, double x);
-
     void matrixMalloc();
     void matrixCopy(const Matrix a);
     int getRowSize();

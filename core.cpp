@@ -6,6 +6,7 @@ void guass(const Matrix c,Matrix &x) {
   int n = c.colSize;
   Matrix a;
   a.init(m,n);
+  x.init(1,(a.colSize - 1));
   a.matrixCopy(c);
   a.printAll();
   for (int j = 0; j < n - 1; j++) { //从第一列到第n-1列
@@ -46,12 +47,6 @@ void guass(const Matrix c,Matrix &x) {
      x.setData(0,i,x.getData(0,i) /a.getData(i,i));
   }
   x.printAll();
-  /*
-  for (int i = 0; i < n - 1; i++) 
-  {
-    cout<< "x[" << i << "]=" << x[i] <<endl;
-  }
-  */
 }
 
 //字符串分割函数
@@ -87,7 +82,9 @@ double stringToDouble(const string &str){
   return num;
 }
 
-void fileRead(double (&matrix)[3][3],int m,int n,string fileName=".\\data.txt"){
+void fileRead(Matrix &matrix,string fileName=".\\data.txt"){
+  int m = 0;
+  int n = 0;
   int i = 0;
   ifstream inFile;
   inFile.open(fileName, ios::in);
@@ -97,17 +94,58 @@ void fileRead(double (&matrix)[3][3],int m,int n,string fileName=".\\data.txt"){
     exit(1);
   } 
   string line;
+  getline(inFile,line);
+  vector<string>  pp = split(line," ");
+  m=stringToDouble(pp[0]);
+  n=stringToDouble(pp[1]);
+  matrix.init(m,n);
   while (getline(inFile,line))
   {
     vector<string>  row =  split(line," ");
     for ( int j = 0; j < row.size(); j++ )
     { 
-	    matrix[i][j] = stringToDouble(row[j]); 
-      cout<<matrix[i][j]<<" ";
+	    matrix.setData(i,j , stringToDouble(row[j])); 
     }
-    cout<<endl;
     i++;
   }
-  cout<<"================"<<endl;
   inFile.close();
+}
+
+void fileWrite( Matrix &matrix,string fileName=".\\result.txt"){
+ int m = matrix.rowSize;
+ int n = matrix.colSize;
+ ofstream outFile;
+ outFile.open(fileName, std::ios::out);
+
+  for (int i=0; i<m; i++)
+  {
+    for(int j=0; j < n; j++)
+    {
+        outFile << std::to_string(matrix.getData(i,j)) << " ";
+    }
+    outFile << "\n";
+  }
+  outFile.close();
+}
+
+void keyboard(Matrix &matrix){
+  int m,n;
+  string line;
+  cout<<"请输入增广矩阵的行数：\n"<<endl;
+  cin>>m;
+  cin.ignore(std::numeric_limits< streamsize >::max(), '\n');
+  cout<<"请输入增广矩阵的列数：\n"<<endl;
+  cin>>n;
+  cin.ignore(std::numeric_limits< streamsize >::max(), '\n');
+  matrix.init(m,n);
+  cout<<"请输入整个增广矩阵：\n"<<endl;
+  for (int i = 0; i < m; i++)
+  {
+    getline(cin,line);
+    vector<string>  row =  split(line," ");
+    for ( int j = 0; j < n; j++ )
+    { 
+	    matrix.setData(i,j,stringToDouble(row[j])); 
+    }
+  }
 }
