@@ -6,6 +6,7 @@
 #include <algorithm>
 #include <bits/stdc++.h>
 #include <fstream>
+#include <sstream>
 using namespace std;
 double a[21][21], x[21];
 int m, n;
@@ -62,7 +63,7 @@ void work() {
   }
   for (int i = 1; i <= n - 1; i++) 
   {
-    cout<< i << "x[" <<i<<"]="<<x[i]<<endl;
+    cout<< i << "x[" << i << "]=" << x[i] <<endl;
   }
 }
 
@@ -89,8 +90,16 @@ vector<string> split(const string &str, const string &delim) {
   return res;
 }
 
-void fileRead(int m,int n,string fileName=".\\data.txt"){
+double stringToDouble(const string &str){
+  istringstream iss(str);
+  double num;
+  iss >> num;
+  return num;
+}
 
+
+void fileRead(double (&matrix)[3][3],int m,int n,string fileName=".\\data.txt"){
+  int i = 0;
   ifstream inFile;
   inFile.open(fileName, ios::in);
   if (!inFile)  //文件不存在
@@ -102,18 +111,28 @@ void fileRead(int m,int n,string fileName=".\\data.txt"){
   while (getline(inFile,line))
   {
     vector<string>  row =  split(line," ");
-    for ( int i = 0; i < row.size(); i++ )
-    {
-	    cout << row[i] << endl;
+    for ( int j = 0; j < row.size(); j++ )
+    { 
+	    matrix[i][j] = stringToDouble(row[j]); 
+      cout<<matrix[i][j]<<" ";
     }
-    //cout <<line<<endl;//空格是为了避免数据都连在一块儿
+    cout<<endl;
+    i++;
   }
+  cout<<"================"<<endl;
   inFile.close();
 }
 
 
 int main() {
-  fileRead(1,1);
+  double a[3][3];
+  fileRead(a,1,1);
+  for(int i = 0;i<3;i++){
+    for(int j = 0; j < 3; j++){
+      cout << a[i][j] << " ";
+    }
+    cout<<endl;
+  }
   /*
   cout<<"请输入增广矩阵的行数：\n"<<endl;
   cin>>m;
