@@ -1,10 +1,11 @@
 #include <stdio.h>
-#include<iostream>
-#include<iomanip>
-#include<cmath>
-#include<string>
-#include<algorithm>
-#include<bits/stdc++.h>
+#include <iostream>
+#include <iomanip>
+#include <cmath>
+#include <string>
+#include <algorithm>
+#include <bits/stdc++.h>
+#include <fstream>
 using namespace std;
 double a[21][21], x[21];
 int m, n;
@@ -64,7 +65,26 @@ void work() {
     cout<< i << "x[" <<i<<"]="<<x[i]<<endl;
   }
 }
+
+
+void fileRead(int m,int n,string fileName=".\\data.txt"){
+
+  ifstream inFile;
+  inFile.open(fileName, ios::in);
+  if (!inFile)  //条件成立，则说明文件打开成功
+    cout <<fileName<<" doesn't exist" << endl;
+    
+  string line;
+    while (getline(inFile,line))
+    {
+        cout <<line<<endl;//空格是为了避免数据都连在一块儿
+    }
+}
+
+
 int main() {
+  fileRead(1,1);
+  /*
   cout<<"请输入增广矩阵的行数：\n"<<endl;
   cin>>m;
   cout<<"请输入增广矩阵的列数：\n"<<endl;
@@ -74,5 +94,7 @@ int main() {
     for (int j = 1; j <= n; j++)
       cin>>a[i][j];
   work();
+  */
   return 0;
 }
+
