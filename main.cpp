@@ -66,19 +66,49 @@ void work() {
   }
 }
 
+//字符串分割函数
+vector<string> split(const string &str, const string &delim) {
+// str要分隔字符串，delim分割字段
+  vector<string> res;
+  if (str.empty()) return res;
+  
+  char *strs = new char[str.length() + 1];
+  strcpy(strs, str.c_str());
+
+  char *d = new char[delim.length() + 1];
+  strcpy(d, delim.c_str());
+
+  char *p = strtok(strs, d);
+  while (p) {
+    string s = p; 
+    res.emplace_back(s); 
+    p = strtok(nullptr, d);
+  }
+  delete[] strs;
+  delete[] d;
+  return res;
+}
 
 void fileRead(int m,int n,string fileName=".\\data.txt"){
 
   ifstream inFile;
   inFile.open(fileName, ios::in);
-  if (!inFile)  //条件成立，则说明文件打开成功
+  if (!inFile)  //文件不存在
+  {
     cout <<fileName<<" doesn't exist" << endl;
-    
+    exit(1);
+  } 
   string line;
-    while (getline(inFile,line))
+  while (getline(inFile,line))
+  {
+    vector<string>  row =  split(line," ");
+    for ( int i = 0; i < row.size(); i++ )
     {
-        cout <<line<<endl;//空格是为了避免数据都连在一块儿
+	    cout << row[i] << endl;
     }
+    //cout <<line<<endl;//空格是为了避免数据都连在一块儿
+  }
+  inFile.close();
 }
 
 
