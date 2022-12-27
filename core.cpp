@@ -46,7 +46,6 @@ void guass(const Matrix c,Matrix &x) {
     for (int j = i + 1; j < n - 1; j++) x.setData(0,i,x.getData(0,i) - a.getData(i,j) * a.getData(1,j));
      x.setData(0,i,x.getData(0,i) /a.getData(i,i));
   }
-  x.printAll();
 }
 
 //字符串分割函数
@@ -111,7 +110,7 @@ void fileRead(Matrix &matrix,string fileName=".\\data.txt"){
   inFile.close();
 }
 
-void fileWrite( Matrix &matrix,string fileName=".\\result.txt"){
+void fileWrite( Matrix &matrix,string fileName){
  int m = matrix.rowSize;
  int n = matrix.colSize;
  ofstream outFile;
@@ -131,14 +130,14 @@ void fileWrite( Matrix &matrix,string fileName=".\\result.txt"){
 void keyboard(Matrix &matrix){
   int m,n;
   string line;
-  cout<<"请输入增广矩阵的行数：\n"<<endl;
+  cout<<"请输入矩阵的行数：\n"<<endl;
   cin>>m;
   cin.ignore(std::numeric_limits< streamsize >::max(), '\n');
-  cout<<"请输入增广矩阵的列数：\n"<<endl;
+  cout<<"请输入矩阵的列数：\n"<<endl;
   cin>>n;
   cin.ignore(std::numeric_limits< streamsize >::max(), '\n');
   matrix.init(m,n);
-  cout<<"请输入整个增广矩阵：\n"<<endl;
+  cout<<"请输入整个矩阵：\n"<<endl;
   for (int i = 0; i < m; i++)
   {
     getline(cin,line);

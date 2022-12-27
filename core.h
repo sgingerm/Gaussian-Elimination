@@ -25,7 +25,7 @@
    void fileRead(Matrix &matrix,string fileName);
 
    //文件写
-   void fileRead(Matrix &matrix,string fileName);
+   void fileWrite( Matrix &matrix,string fileName);
 
    //键盘输入接口
    void keyboard(Matrix &matrix);
