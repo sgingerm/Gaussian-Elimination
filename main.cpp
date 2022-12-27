@@ -13,12 +13,16 @@ int main() {
        keyboard(B);
        break; 
     case 2 :
-       fileRead(B);
+       fileRead(B,".\\data.txt");
        break;
     default : 
       exit(0);
 }
-  guass(B,x);
+inverse(B,x);
+
+//x.printAll();
+  //guass(B,x);
+  //x.printAll();
   /*
   fileRead(matrix,1,1);
   for(int i = 0;i<3;i++){

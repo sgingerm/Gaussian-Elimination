@@ -31,6 +31,7 @@ void Matrix::init(int m,int n){
 
 void Matrix::matrixMalloc(){
     data = (double *)malloc(rowSize*colSize*sizeof(double));
+    memset(data,0,rowSize*colSize);
     if(NULL == data)
     {
         printf("malloc failed");

@@ -22,12 +22,18 @@
    double stringToDouble(const string &str);
 
    //文件读
-   void fileRead(Matrix &matrix,string fileName=".\\data.txt");
+   void fileRead(Matrix &matrix,string fileName);
 
    //文件写
    void fileRead(Matrix &matrix,string fileName);
 
    //键盘输入接口
    void keyboard(Matrix &matrix);
+
+   //输入矩阵A,输出矩阵A的逆矩阵inv_A
+   void inverse(Matrix &A,Matrix &inv_A);
+
+   //矩阵A*矩阵B=矩阵C
+   void multiply(Matrix &A,Matrix &B,Matrix &C);
 
 #endif
