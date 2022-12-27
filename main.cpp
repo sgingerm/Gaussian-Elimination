@@ -89,7 +89,7 @@ void mu(Matrix A,Matrix B,Matrix x){
   cout<<"请选择要计算的任务(输入编号):"<<endl;
   cout<<"1、高斯消元计算线性方程组"<<endl
       <<"2、LU分解计算矩阵的逆"<<endl
-      <<"3、计算计算矩阵乘"<<endl
+      <<"3、计算矩阵乘"<<endl
        <<"0、退出程序" << endl;
   int expression;
   cin>>expression;
